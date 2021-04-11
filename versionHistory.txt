@@ -1,3 +1,8 @@
+v1.16 - It's 2021!
+	Readded launcher page and mini popup window
+	Moved the game back to my personal site
+	Removed Kongregate support
+
 v1.15 - Kongregate
 	Added highscores and user login for Kongregate
 	Added preemptive support for Kongregate badges. Not active yet
@@ -36,7 +41,7 @@ v1.09 - Just another maintanance update
 	Rewrote gameplay clock to allow repeated triggers longer than 1 minute
 	Changed autosave trigger to every 5 minutes instead of every 1 minute
 	Lowered XP gain by ~30% for most things because the grind is too fast
-	
+
 v1.08 - Chrome error is fixed!
 	Rewrote 'Export Save' to work in all browsers
 	Fixed a new CSS bug in Safari 7
@@ -91,7 +96,7 @@ v1.01 - Day 1 rebalancing
 	Buffed the superboss a ton
 	Debuffed dodgeXP gain a tiny bit
 	Changed save exporting from alert() to prompt() so that you can copy from it
-	Displays your current location on the world map with an X 
+	Displays your current location on the world map with an X
 	Possibly made the cancel button in the import save feature a bit safer
 	You can now get critXP if you oneshot a monster with a crit, as intended
 	Changed combat damage readout to Math.ceil to prevent (0% remaining) results

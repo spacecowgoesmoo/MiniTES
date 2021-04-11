@@ -7,8 +7,6 @@ var cow = {
 	maxDMG: 8,
 	ac: 0,
 
-	kongUsername: '',
-
 	str: 5,
 	def: 5,
 	agi: 5,
@@ -96,7 +94,7 @@ var cow = {
 	combatState: "off",
 	mobCurrentHP: "9999",
 	endTurn: false,
-	
+
 	keyItem1have: false,
 	keyItem2have: false,
 	keyItem3have: false,
@@ -121,7 +119,7 @@ var cow = {
 	keyItem22have: false,
 	keyItem23have: false,
 	keyItem24have: false,
-	
+
 	mapItem1have: false,
 	mapItem2have: false,
     mapItem3have: false,
@@ -130,7 +128,7 @@ var cow = {
     mapItem6have: false,
     mapItem7have: false,
     mapItem8have: false,
-	
+
 	seal1have: false,
 	seal2have: false,
     seal3have: false,
@@ -139,7 +137,7 @@ var cow = {
     seal6have: false,
     seal7have: false,
     seal8have: false,
-}	
+}
 
 
 var map1 = { name: "Vieda Port", 			text: "Vieda Port"}

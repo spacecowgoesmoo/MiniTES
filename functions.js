@@ -1,12 +1,12 @@
 // Tab functions
-function showMain () { 
+function showMain () {
 	unlockAllTabs();																// Enable all tabs..
 	document.getElementById('mainButton').disabled = true;							// except this one.
 	document.getElementById('mapTab').className = 'invisible';						// Make all the other tab divs nonexistant
 	document.getElementById('keyItemsTab').className = 'invisible';
 	document.getElementById('equipsTab').className = 'invisible';
-	document.getElementById('optionsTab').className = 'invisible';  
-	document.getElementById('faqTab').className = 'invisible';  
+	document.getElementById('optionsTab').className = 'invisible';
+	document.getElementById('faqTab').className = 'invisible';
 	document.getElementById('aboutTab').className = 'invisible';
 	document.getElementById('statsTab').className = 'visible extraChromeTextWidth2';// Make this tab div exist
 	cow.currentTab = "main";														// Triggers the main game loop
@@ -21,15 +21,15 @@ function showMain () {
 		updateMainTextSpans();
 		updateEXPProgressBars();
 }
-function showEquips () { 
+function showEquips () {
 	unlockAllTabs();
 	document.getElementById('equipsButton').disabled = true;
 	document.getElementById('statsTab').className = 'invisible';
 	document.getElementById('mapTab').className = 'invisible';
-	document.getElementById('keyItemsTab').className = 'invisible'; 
-	document.getElementById('aboutTab').className = 'invisible'; 
-	document.getElementById('faqTab').className = 'invisible';  
-	document.getElementById('optionsTab').className = 'invisible'; 
+	document.getElementById('keyItemsTab').className = 'invisible';
+	document.getElementById('aboutTab').className = 'invisible';
+	document.getElementById('faqTab').className = 'invisible';
+	document.getElementById('optionsTab').className = 'invisible';
 	document.getElementById('equipsTab').className = 'visible';
 	document.getElementById('equipsButton').innerHTML = "<span id='IEhack'>Equips</span>";					// Clears the 'NEW!' readout
 	populateEquipsTab();
@@ -40,70 +40,70 @@ function showEquips () {
 	colorCurrentEquipsFaded();
 	cow.currentTab = "equips";
 }
-function showKeyItems () { 
-	unlockAllTabs(); 
+function showKeyItems () {
+	unlockAllTabs();
 	document.getElementById('keyItemsButton').disabled = true;
 	document.getElementById('statsTab').className = 'invisible';
 	document.getElementById('mapTab').className = 'invisible';
 	document.getElementById('equipsTab').className = 'invisible';
 	document.getElementById('aboutTab').className = 'invisible';
-	document.getElementById('faqTab').className = 'invisible';  
+	document.getElementById('faqTab').className = 'invisible';
 	document.getElementById('optionsTab').className = 'invisible';
 	document.getElementById('keyItemsTab').className = 'visible';
 	document.getElementById('keyItemsButton').innerHTML = "<span id='IEhack'>Key Items</span>";				// Clears the 'NEW!' readout
 	populateKeyItemsTab();
 	cow.currentTab = "keyItems";
 }
-function showMap () { 
+function showMap () {
 	unlockAllTabs();
-	document.getElementById('worldMapButton').disabled = true; 
+	document.getElementById('worldMapButton').disabled = true;
 	document.getElementById('statsTab').className = 'invisible';
 	document.getElementById('keyItemsTab').className = 'invisible';
 	document.getElementById('equipsTab').className = 'invisible';
 	document.getElementById('aboutTab').className = 'invisible';
-	document.getElementById('faqTab').className = 'invisible';  
-	document.getElementById('optionsTab').className = 'invisible'; 
-	document.getElementById('mapTab').className = 'visible'; 
+	document.getElementById('faqTab').className = 'invisible';
+	document.getElementById('optionsTab').className = 'invisible';
+	document.getElementById('mapTab').className = 'visible';
 	document.getElementById('mapText').innerHTML = '';
 	cow.currentTab = "map";
 	highlightKeyItemLocations();
-	if (cow.keyItem22have == true)	{ document.getElementById('map24').className = 'fullBrightText clickable'; }	// Reveals Undercrypt if it's unlocked 
+	if (cow.keyItem22have == true)	{ document.getElementById('map24').className = 'fullBrightText clickable'; }	// Reveals Undercrypt if it's unlocked
 }
-function showOptions () { 
-	unlockAllTabs(); 
+function showOptions () {
+	unlockAllTabs();
 	document.getElementById('optionsButton').disabled = true;
 	document.getElementById('statsTab').className = 'invisible';
 	document.getElementById('keyItemsTab').className = 'invisible';
 	document.getElementById('equipsTab').className = 'invisible';
 	document.getElementById('mapTab').className = 'invisible';
-	document.getElementById('aboutTab').className = 'invisible'; 
-	document.getElementById('faqTab').className = 'invisible';  
+	document.getElementById('aboutTab').className = 'invisible';
+	document.getElementById('faqTab').className = 'invisible';
 	document.getElementById('optionsTab').className = 'visible';
 	updateGameplayClock();
 	cow.currentTab = "options";
 }
-function showFAQ () { 
+function showFAQ () {
 	unlockAllTabs();
-	document.getElementById('faqButton').disabled = true;  
+	document.getElementById('faqButton').disabled = true;
 	document.getElementById('statsTab').className = 'invisible';
 	document.getElementById('keyItemsTab').className = 'invisible';
 	document.getElementById('equipsTab').className = 'invisible';
 	document.getElementById('mapTab').className = 'invisible';
 	document.getElementById('optionsTab').className = 'invisible';
-	document.getElementById('aboutTab').className = 'invisible';  
-	document.getElementById('faqTab').className = 'visible';  
+	document.getElementById('aboutTab').className = 'invisible';
+	document.getElementById('faqTab').className = 'visible';
 	cow.currentTab = "faq";
 }
-function showAbout () { 
+function showAbout () {
 	unlockAllTabs();
-	document.getElementById('aboutButton').disabled = true;  
+	document.getElementById('aboutButton').disabled = true;
 	document.getElementById('statsTab').className = 'invisible';
 	document.getElementById('keyItemsTab').className = 'invisible';
 	document.getElementById('equipsTab').className = 'invisible';
 	document.getElementById('mapTab').className = 'invisible';
 	document.getElementById('optionsTab').className = 'invisible';
-	document.getElementById('faqTab').className = 'invisible';  
-	document.getElementById('aboutTab').className = 'visible';  
+	document.getElementById('faqTab').className = 'invisible';
+	document.getElementById('aboutTab').className = 'visible';
 	cow.currentTab = "about";
 }
 
@@ -115,69 +115,17 @@ function showAbout () {
 
 
 function preloader() {
-	kongregateStuff();
 	preloadStuff();
-
-	function waitForLogin() {													
-		if (cow.kongUsername) {								// NOTE - This username login part doubles as a sitelock
-			loadGame();
-			autoSave();
-			loadDefaultOptions();
-			showMain();
-			recalculateWeaponDMG();
-			recalculatePlayerDMG();
-			recalculateArmorPieceAC();
-			recalculatePlayerAC();
-			updateMainTextSpans();
-			updateEXPProgressBars();
-		}
-		else {
-			setTimeout(waitForLogin, 500);					// Ghetto animation engine variation because we don't need 60FPS. 2FPS is fine.
-		}
-	}
-	waitForLogin();
-}
-
-function kongregateStuff() {
-	kongregateAPI.loadAPI(function(){												// Initialize
-		window.kongregate = kongregateAPI.getAPI();									//
-		
-		cow.kongUsername = kongregate.services.getUsername();						// Get username for the savefile
-		// if (kongregate.services.isGuest()) { cow.kongUsername = 'guest'; }		// Already covered by the API
-		
-		kongregate.services.addEventListener('login', kongLiveLogin);				// Recognize live page logins, and execute this function
-		
-		function kongLiveLogin() {
-			var x = kongregate.services.getUsername();
-			console.log('Kong username changed to: ' + x);
-			cow.kongUsername = x;													// This is OK because the new username isn't saved
-			loadGame();
-			loadDefaultOptions();
-			showMain();
-			recalculateWeaponDMG();
-			recalculatePlayerDMG();
-			recalculateArmorPieceAC();
-			recalculatePlayerAC();
-			updateMainTextSpans();
-			updateEXPProgressBars();
-		}
-		
-		function submitScores() {													// High Scores and future badges
-			var q = cow.axe + cow.sword + cow.dagger + cow.fist + cow.speech + cow.critical + cow.spear + cow.mace + cow.dodge + cow.block + cow.unlock + cow.hArmor + cow.mArmor +	cow.lArmor + cow.athlete + cow.medic +	cow.endure + cow.smash + cow.climb + cow.stealth;
-			
-			kongregate.stats.submit("Player Level", cow.level);
-			kongregate.stats.submit("Combined Skill Level", q);
-			kongregate.stats.submit("Max HP", cow.maxHP);
- 			if (cow.keyItem1have == true) { kongregate.stats.submit("Apprentice", 1); }							 // Easy		Apprentice			Find the Guild Pass
- 			if (cow.mapItem1have == true &&	cow.mapItem2have == true && cow.mapItem3have == true && cow.mapItem4have == true && cow.mapItem5have == true && cow.mapItem6have == true && cow.mapItem7have == true && cow.mapItem8have == true)
-					 					   { kongregate.stats.submit("Protector", 1); }							 // Medium		Protector			Collect all eight maps
- 			if (cow.keyItem21have == true) { kongregate.stats.submit("Guardian", 1); }							 // Hard		Guardian			Complete the Game
- 			if (cow.keyItem24have == true) { kongregate.stats.submit("Champion", 1); }							 // Impossible	Champion			Complete the Postgame
-			setTimeout(submitScores, 30000);
-		}
-		
-		submitScores();
-	});
+	loadGame();
+	autoSave();
+	loadDefaultOptions();
+	showMain();
+	recalculateWeaponDMG();
+	recalculatePlayerDMG();
+	recalculateArmorPieceAC();
+	recalculatePlayerAC();
+	updateMainTextSpans();
+	updateEXPProgressBars();
 }
 
 
@@ -188,15 +136,14 @@ function kongregateStuff() {
 
 
 function autoSave() {
-	var zzz = 'minitesSAVEFILE' + cow.kongUsername;
+	var zzz = 'minitesSAVEFILE';
 	localStorage.removeItem(zzz);
 	localStorage.setItem(zzz, JSON.stringify(cow));
 }
 
 function loadGame() {
-	var zzz = 'minitesSAVEFILE' + cow.kongUsername;
+	var zzz = 'minitesSAVEFILE';
 	var q = localStorage.getItem(zzz);
-	console.log('Attempting login with Kong username: ' + cow.kongUsername);
 	if (q != null) {
 		window.cow = JSON.parse(q);
 		cow.hp = cow.maxHP;
@@ -227,9 +174,9 @@ function exportSave () {
 	console.log (JSON.stringify(window.opener.cow));
 	document.getElementById('exportSaveTextField').value = q;
 }
-  
-  
-  
+
+
+
 function exportEncryptedSave() {
 	var q = JSON.stringify(window.opener.cow);
 	q = CryptoJS.AES.encrypt(q, 'notVerySecretHash');
@@ -301,7 +248,7 @@ function importEncryptedSave() {
 function eraseSave () {
 	if (confirm("Reset your save file?") ) {
 	    if (confirm("Last chance warning - Your save file will be reset permanently!!! (Also there's no prestige system in this game, just fyi.)") ) {
-			window.cow = {"level":1,"levelXP":0,"hp":30,"maxHP":30,"minDMG":3,"maxDMG":5,"ac":0,"kongUsername":'',"str":5,"def":5,"agi":5,"spd":5,"cha":5,"luk":5,"axe":1,"sword":1,"dagger":1,"fist":1,"speech":1,"critical":1,"spear":1,"mace":1,"dodge":1,"block":1,"unlock":1,"hArmor":1,"mArmor":1,"lArmor":1,"athlete":1,"medic":1,"endure":1,"smash":1,"climb":1,"stealth":1,"strXP":0,"defXP":0,"agiXP":0,"spdXP":0,"chaXP":0,"lukXP":0,"axeXP":0,"swordXP":0,"daggerXP":0,"fistXP":0,"speechXP":0,"criticalXP":0,"spearXP":0,"maceXP":0,"dodgeXP":0,"blockXP":0,"unlockXP":0,"hArmorXP":0,"mArmorXP":0,"lArmorXP":0,"athleteXP":0,"medicXP":0,"endureXP":0,"smashXP":0,"climbXP":0,"stealthXP":0,"equippedHeadArmor":"","equippedShoulderArmor":"","equippedGloves":"","equippedBodyArmor":"","equippedPants":"","equippedShoes":"","equippedShield":"","equippedWeapon":"Fist1","currentMap":"Vieda Port","currentTab":"options","worldMapRNG":0,"itemDropRNG":0,"itemClassRNG":0,"masterGamestateVariable":"startingAnEvent","waitCounter":0,"travelDestination":"","travellingTime":0,"restingMap":"","restingTime":0,"currentImprovingSkill":"smash","cssDefaultTheme":"Black","gameplayClock":1,"minutesPlayed":0,"hoursPlayed":0,"respawnAtVieda":true,"overrideCurrentMapDisplay":"","combatState":"off","mobCurrentHP":"9999","endTurn":false,"keyItem1have":false,"keyItem2have":false,"keyItem3have":false,"keyItem4have":false,"keyItem5have":false,"keyItem6have":false,"keyItem7have":false,"keyItem8have":false,"keyItem9have":false,"keyItem10have":false,"keyItem11have":false,"keyItem12have":false,"keyItem13have":false,"keyItem14have":false,"keyItem15have":false,"keyItem16have":false,"keyItem17have":false,"keyItem18have":false,"keyItem19have":false,"keyItem20have":false,"keyItem21have":false,"keyItem22have":false,"keyItem23have":false,"keyItem24have":false,"mapItem1have":false,"mapItem2have":false,"mapItem3have":false,"mapItem4have":false,"mapItem5have":false,"mapItem6have":false,"mapItem7have":false,"mapItem8have":false,"seal1have":false,"seal2have":false,"seal3have":false,"seal4have":false,"seal5have":false,"seal6have":false,"seal7have":false,"seal8have":false,"bestlightHeadArmor":0,"bestlightShoulderArmor":0,"bestlightGloves":0,"bestlightBodyArmor":0,"bestlightPants":0,"bestlightShoes":0,"bestlightShield":0,"bestmediumHeadArmor":0,"bestmediumShoulderArmor":0,"bestmediumGloves":0,"bestmediumBodyArmor":0,"bestmediumPants":0,"bestmediumShoes":0,"bestmediumShield":0,"bestheavyHeadArmor":0,"bestheavyShoulderArmor":0,"bestheavyGloves":0,"bestheavyBodyArmor":0,"bestheavyPants":0,"bestheavyShoes":0,"bestheavyShield":0,"bestdagger":0,"bestfist":1,"bestsword":0,"bestmace":0,"bestspear":0,"bestaxe":0}	   	 
+			window.cow = {"level":1,"levelXP":0,"hp":30,"maxHP":30,"minDMG":3,"maxDMG":5,"ac":0,"str":5,"def":5,"agi":5,"spd":5,"cha":5,"luk":5,"axe":1,"sword":1,"dagger":1,"fist":1,"speech":1,"critical":1,"spear":1,"mace":1,"dodge":1,"block":1,"unlock":1,"hArmor":1,"mArmor":1,"lArmor":1,"athlete":1,"medic":1,"endure":1,"smash":1,"climb":1,"stealth":1,"strXP":0,"defXP":0,"agiXP":0,"spdXP":0,"chaXP":0,"lukXP":0,"axeXP":0,"swordXP":0,"daggerXP":0,"fistXP":0,"speechXP":0,"criticalXP":0,"spearXP":0,"maceXP":0,"dodgeXP":0,"blockXP":0,"unlockXP":0,"hArmorXP":0,"mArmorXP":0,"lArmorXP":0,"athleteXP":0,"medicXP":0,"endureXP":0,"smashXP":0,"climbXP":0,"stealthXP":0,"equippedHeadArmor":"","equippedShoulderArmor":"","equippedGloves":"","equippedBodyArmor":"","equippedPants":"","equippedShoes":"","equippedShield":"","equippedWeapon":"Fist1","currentMap":"Vieda Port","currentTab":"options","worldMapRNG":0,"itemDropRNG":0,"itemClassRNG":0,"masterGamestateVariable":"startingAnEvent","waitCounter":0,"travelDestination":"","travellingTime":0,"restingMap":"","restingTime":0,"currentImprovingSkill":"smash","cssDefaultTheme":"Black","gameplayClock":1,"minutesPlayed":0,"hoursPlayed":0,"respawnAtVieda":true,"overrideCurrentMapDisplay":"","combatState":"off","mobCurrentHP":"9999","endTurn":false,"keyItem1have":false,"keyItem2have":false,"keyItem3have":false,"keyItem4have":false,"keyItem5have":false,"keyItem6have":false,"keyItem7have":false,"keyItem8have":false,"keyItem9have":false,"keyItem10have":false,"keyItem11have":false,"keyItem12have":false,"keyItem13have":false,"keyItem14have":false,"keyItem15have":false,"keyItem16have":false,"keyItem17have":false,"keyItem18have":false,"keyItem19have":false,"keyItem20have":false,"keyItem21have":false,"keyItem22have":false,"keyItem23have":false,"keyItem24have":false,"mapItem1have":false,"mapItem2have":false,"mapItem3have":false,"mapItem4have":false,"mapItem5have":false,"mapItem6have":false,"mapItem7have":false,"mapItem8have":false,"seal1have":false,"seal2have":false,"seal3have":false,"seal4have":false,"seal5have":false,"seal6have":false,"seal7have":false,"seal8have":false,"bestlightHeadArmor":0,"bestlightShoulderArmor":0,"bestlightGloves":0,"bestlightBodyArmor":0,"bestlightPants":0,"bestlightShoes":0,"bestlightShield":0,"bestmediumHeadArmor":0,"bestmediumShoulderArmor":0,"bestmediumGloves":0,"bestmediumBodyArmor":0,"bestmediumPants":0,"bestmediumShoes":0,"bestmediumShield":0,"bestheavyHeadArmor":0,"bestheavyShoulderArmor":0,"bestheavyGloves":0,"bestheavyBodyArmor":0,"bestheavyPants":0,"bestheavyShoes":0,"bestheavyShield":0,"bestdagger":0,"bestfist":1,"bestsword":0,"bestmace":0,"bestspear":0,"bestaxe":0}
 			alert('Save file has been reset.');
 			autoSave();
 			showMain();
@@ -366,7 +313,7 @@ function highlightKeyItemLocations() {
 		if (cow.keyItem18have == false) {document.getElementById('map22').innerHTML = q;}
 		if (cow.keyItem19have == false) {document.getElementById('map22').innerHTML = q;}
 		if (cow.keyItem20have == false) {document.getElementById('map23').innerHTML = q;}
-	
+
 		if (cow.mapItem1have == false) {document.getElementById('map6').innerHTML = q;}
 		if (cow.mapItem2have == false) {document.getElementById('map7').innerHTML = q;}
 		if (cow.mapItem3have == false) {document.getElementById('map10').innerHTML = q;}
@@ -375,7 +322,7 @@ function highlightKeyItemLocations() {
 		if (cow.mapItem6have == false) {document.getElementById('map16').innerHTML = q;}
 		if (cow.mapItem7have == false) {document.getElementById('map17').innerHTML = q;}
 		if (cow.mapItem8have == false) {document.getElementById('map18').innerHTML = q;}
-	
+
 		// if (cow.seal1have == false) {document.getElementById('map8').innerHTML = q;}
 		// if (cow.seal2have == false) {document.getElementById('map9').innerHTML = q;}
 		// if (cow.seal3have == false) {document.getElementById('map13').innerHTML = q;}
@@ -468,19 +415,19 @@ function changeRespawnLocation (q) {
 // World map button functions
 function gotoArea (q) {
 	if (cow.currentMap == window['map'+q].name) {			// if clicked map location is same as current, go back instantly
-		cow.masterGamestateVariable = "refreshRNGNow";	
+		cow.masterGamestateVariable = "refreshRNGNow";
 		updateMainTextSpans();
 		showMain();
 	} else if (q == 24 && cow.keyItem22have == false) {		// if undercrypt is locked and clicked, do nothing
 	} else {												// otherwise activate travelling mode
 		cow.masterGamestateVariable = "startingAnEvent";
-		cow.travelDestination = window['map'+q].name; 
+		cow.travelDestination = window['map'+q].name;
 		cow.currentMap = "travelling";
 			cow.travellingTime = (3 / (cow.athlete/75));					// TRAVELLING TIME / ATHLETE FORMULA!!!!!
 			if (cow.keyItem12have == true) {cow.travellingTime *= 0.66}		//
 			if (cow.travellingTime > 15) { cow.travellingTime = 15}			/////
 			if (cow.travellingTime < 3) { cow.travellingTime = 3}			///////////////
-		
+
 		updateMainTextSpans();
 		showMain();
 		lockAllTabs();
@@ -491,7 +438,7 @@ function gotoArea (q) {
 
 
 // Update map text descriptions functions
-function mapText (q) { 	document.getElementById('mapText').innerHTML = window['map'+q].text; 
+function mapText (q) { 	document.getElementById('mapText').innerHTML = window['map'+q].text;
 						if (q == 24 && cow.keyItem22have == false) document.getElementById('mapText').innerHTML = ''; }		// undercrypt hack
 function mapTextClear () { document.getElementById('mapText').innerHTML = ''; }
 
@@ -499,18 +446,18 @@ function mapTextClear () { document.getElementById('mapText').innerHTML = ''; }
 
 
 // Update equips text descriptions functions
-function equipsArmorText (q) { 
+function equipsArmorText (q) {
 	var r = cow['best'+q];
 	if (q.substring(0, 5) == "light") { var s = "Light Armor"}
 	if (q.substring(0, 6) == "medium") { var s = "Medium Armor"}
 	if (q.substring(0, 5) == "heavy") { var s = "Heavy Armor"}
 	if (r >= 1) document.getElementById('equipsStatText').innerHTML = s + ': ' + window[q+r].armorClass + ' AC';
-	if (r >= 1 && q.slice(-6) == "Shield") document.getElementById('equipsStatText').innerHTML = s + ': +' + r*2 + '% chance to block'; 
+	if (r >= 1 && q.slice(-6) == "Shield") document.getElementById('equipsStatText').innerHTML = s + ': +' + r*2 + '% chance to block';
 	}
-function equipsWeaponText (q) { 
+function equipsWeaponText (q) {
 	var r = cow['best'+q];
 	var s = capitalizeFirstLetter(q);
-	if (r >= 1) document.getElementById('equipsStatText').innerHTML = s + ': ' + window[q+r].minDamage + ' - ' + window[q+r].maxDamage + ' DMG'; 
+	if (r >= 1) document.getElementById('equipsStatText').innerHTML = s + ': ' + window[q+r].minDamage + ' - ' + window[q+r].maxDamage + ' DMG';
 	}
 function equipsTextClear () { document.getElementById('equipsStatText').innerHTML = '<br>' }
 
@@ -544,8 +491,8 @@ function populateEquipsTab() {
 	document.getElementById('textEquips6').innerHTML = window['lightShoes'+cow.bestlightShoes].name;
 	document.getElementById('textEquips7').innerHTML = window['lightShield'+cow.bestlightShield].name;
 	document.getElementById('textEquips8').innerHTML = window['dagger'+cow.bestdagger].name;
-	document.getElementById('textEquips9').innerHTML = window['fist'+cow.bestfist].name;		
-		
+	document.getElementById('textEquips9').innerHTML = window['fist'+cow.bestfist].name;
+
 	document.getElementById('textEquips10').innerHTML = window['mediumHeadArmor'+cow.bestmediumHeadArmor].name;
 	document.getElementById('textEquips11').innerHTML = window['mediumShoulderArmor'+cow.bestmediumShoulderArmor].name;
 	document.getElementById('textEquips12').innerHTML = window['mediumGloves'+cow.bestmediumGloves].name;
@@ -555,7 +502,7 @@ function populateEquipsTab() {
 	document.getElementById('textEquips16').innerHTML = window['mediumShield'+cow.bestmediumShield].name;
 	document.getElementById('textEquips17').innerHTML = window['sword'+cow.bestsword].name;
 	document.getElementById('textEquips18').innerHTML = window['axe'+cow.bestaxe].name;
-		
+
 	document.getElementById('textEquips19').innerHTML = window['heavyHeadArmor'+cow.bestheavyHeadArmor].name;
 	document.getElementById('textEquips20').innerHTML = window['heavyShoulderArmor'+cow.bestheavyShoulderArmor].name;
 	document.getElementById('textEquips21').innerHTML = window['heavyGloves'+cow.bestheavyGloves].name;
@@ -577,9 +524,9 @@ function populateEquipsTab() {
 // Color current equips white when the equip tab is loaded
 function colorCurrentEquipsFaded() {
 	// initializes all slots, unless it's a ---
-	for (var i = 1; i<28; i++) { document.getElementById('textEquips'+i).className = 'fadedText3 clickable'; 
+	for (var i = 1; i<28; i++) { document.getElementById('textEquips'+i).className = 'fadedText3 clickable';
 		 if (document.getElementById('textEquips'+i).innerHTML == "---") document.getElementById('textEquips'+i).className = 'fadedText3';}
-	
+
 	if (cow.equippedHeadArmor.substring(0,5) == 'light') { document.getElementById('textEquips1').className = 'fullBrightText'; }
 	if (cow.equippedShoulderArmor.substring(0,5) == 'light') { document.getElementById('textEquips2').className = 'fullBrightText'; }
 	if (cow.equippedGloves.substring(0,5) == 'light') { document.getElementById('textEquips3').className = 'fullBrightText'; }
@@ -599,7 +546,7 @@ function colorCurrentEquipsFaded() {
 	if (cow.equippedShield.substring(0,6) == 'medium') { document.getElementById('textEquips16').className = 'fullBrightText'; }
 	if (cow.equippedWeapon.substring(0,5) == 'Sword') { document.getElementById('textEquips17').className = 'fullBrightText'; }
 	if (cow.equippedWeapon.substring(0,3) == 'Axe') { document.getElementById('textEquips18').className = 'fullBrightText'; }
-	
+
 	if (cow.equippedHeadArmor.substring(0,5) == 'heavy') { document.getElementById('textEquips19').className = 'fullBrightText'; }
 	if (cow.equippedShoulderArmor.substring(0,5) == 'heavy') { document.getElementById('textEquips20').className = 'fullBrightText'; }
 	if (cow.equippedGloves.substring(0,5) == 'heavy') { document.getElementById('textEquips21').className = 'fullBrightText'; }
@@ -620,22 +567,22 @@ function populateKeyItemsTab() {
 	//initialize
 	document.getElementById('textKeyItem'+q).innerHTML = "---";
 	document.getElementById('textKeyItem'+q).className = "fadedText3";
-		if (cow['keyItem'+q+'have'] == true) { 
+		if (cow['keyItem'+q+'have'] == true) {
 			document.getElementById('textKeyItem'+q).innerHTML = window['keyItem'+q].name;
 			document.getElementById('textKeyItem'+q).className = "fullBrightText";
-		}			
+		}
 	}
 	for (var q = 1; q<9; q++) {
-		if (cow['mapItem'+q+'have'] == true) { 
+		if (cow['mapItem'+q+'have'] == true) {
 			document.getElementById('textMapItem'+q).innerHTML = "✸";
 			document.getElementById('textMapItem'+q).className = "fullBrightText";
-		}			
+		}
 	}
 	for (var q = 1; q<9; q++) {
-		if (cow['seal'+q+'have'] == true) { 
+		if (cow['seal'+q+'have'] == true) {
 			document.getElementById('textSeal'+q).innerHTML = "✸";
 			document.getElementById('textSeal'+q).className = "fullBrightText";
-		}			
+		}
 	}
 }
 
@@ -658,7 +605,7 @@ function recalculateWeaponDMG () {
 	var a = ((cow.def/75) + 0.5);
 	if (cow.equippedShield == "") {	var nsb = 1.1; } else var nsb = 1;				// No shield boost
 	if (cow.keyItem2have == true) { var whet = 1.05;} else var whet = 1;				// Key Item 2
-	
+
 	for (var q = 1; q<10; q++) {
 		window['dagger'+q].minDamage = daggerMin[q];								// reset all weapons damage values
 		window['fist'+q].minDamage = fistMin[q];
@@ -671,7 +618,7 @@ function recalculateWeaponDMG () {
 		window['mace'+q].maxDamage = maceMax[q];
 		window['spear'+q].maxDamage	= spearMax[q];
 		window['axe'+q].maxDamage = axeMax[q];
-		
+
 		window['dagger'+q].minDamage 	+= (cow.smash / 10);						// apply smash modifier
 		window['fist'+q].minDamage 		+= (cow.smash / 10);
 		window['sword'+q].minDamage		+= (cow.smash / 10);
@@ -683,7 +630,7 @@ function recalculateWeaponDMG () {
 		window['mace'+q].maxDamage 		+= (cow.smash / 10);
 		window['spear'+q].maxDamage		+= (cow.smash / 10);
 		window['axe'+q].maxDamage 		+= (cow.smash / 10);
-		
+
 		window['dagger'+q].minDamage 	*= (d * nsb * whet);						// apply more modifiers
 		window['fist'+q].minDamage 		*= (f * nsb * whet);
 		window['sword'+q].minDamage		*= (sw * nsb * whet);
@@ -695,7 +642,7 @@ function recalculateWeaponDMG () {
 		window['mace'+q].maxDamage 		*= (m * nsb * whet);
 		window['spear'+q].maxDamage		*= (sp * nsb * whet);
 		window['axe'+q].maxDamage 		*= (a * nsb * whet);
-		
+
 		if (cow.keyItem4have == true) {
 			window['dagger'+q].minDamage 	*= ((f + sw + m + sp + a ) / 20) + 1;		// apply postgame weapon synergy mod
 			window['fist'+q].minDamage 		*= ((d + sw + m + sp + a ) / 20) + 1;
@@ -708,7 +655,7 @@ function recalculateWeaponDMG () {
 			window['mace'+q].maxDamage 		*= ((d + f + sw + sp + a ) / 20) + 1;
 			window['spear'+q].maxDamage		*= ((d + f + sw + m + a  ) / 20) + 1;
 			window['axe'+q].maxDamage 		*= ((d + f + sw + m + sp ) / 20) + 1;	}
-		
+
 		if (cow.keyItem10have == true) {
 		window['dagger'+q].maxDamage	+= 3;											// apply Frozen Soul boost
 		window['fist'+q].maxDamage 		+= 3;
@@ -716,18 +663,18 @@ function recalculateWeaponDMG () {
 		window['mace'+q].maxDamage 		+= 3;
 		window['spear'+q].maxDamage		+= 3;
 		window['axe'+q].maxDamage 		+= 3; }
-		
+
 		window['dagger'+q].minDamage 	= Math.round (window['dagger'+q].minDamage);		// Trim decimal places
-		window['fist'+q].minDamage 		= Math.round (window['fist'+q].minDamage); 	
-		window['sword'+q].minDamage		= Math.round (window['sword'+q].minDamage);	
-		window['mace'+q].minDamage 		= Math.round (window['mace'+q].minDamage); 	
-		window['spear'+q].minDamage		= Math.round (window['spear'+q].minDamage);	
+		window['fist'+q].minDamage 		= Math.round (window['fist'+q].minDamage);
+		window['sword'+q].minDamage		= Math.round (window['sword'+q].minDamage);
+		window['mace'+q].minDamage 		= Math.round (window['mace'+q].minDamage);
+		window['spear'+q].minDamage		= Math.round (window['spear'+q].minDamage);
 		window['dagger'+q].maxDamage	= Math.round (window['dagger'+q].maxDamage);
-		window['fist'+q].maxDamage 		= Math.round (window['fist'+q].maxDamage); 	
-		window['sword'+q].maxDamage		= Math.round (window['sword'+q].maxDamage);	
-		window['mace'+q].maxDamage 		= Math.round (window['mace'+q].maxDamage); 	
-		window['spear'+q].maxDamage		= Math.round (window['spear'+q].maxDamage);	
-		window['axe'+q].maxDamage 		= Math.round (window['axe'+q].maxDamage); 	
+		window['fist'+q].maxDamage 		= Math.round (window['fist'+q].maxDamage);
+		window['sword'+q].maxDamage		= Math.round (window['sword'+q].maxDamage);
+		window['mace'+q].maxDamage 		= Math.round (window['mace'+q].maxDamage);
+		window['spear'+q].maxDamage		= Math.round (window['spear'+q].maxDamage);
+		window['axe'+q].maxDamage 		= Math.round (window['axe'+q].maxDamage);
 	}
 }
 
@@ -746,10 +693,10 @@ function recalculateArmorPieceAC () {
 	var l = ((cow.lArmor/75) + 0.5);											// grab skill modifiers
 	var m = ((cow.mArmor/75) + 0.5);
 	var h = ((cow.hArmor/75) + 0.5);
-	var ll = (cow.lArmor/12);	
+	var ll = (cow.lArmor/12);
 	var mm = (cow.mArmor/12);
 	var hh = (cow.hArmor/12);
-	
+
 	for (var q = 1; q<10; q++) {
 		window['lightHeadArmor'+q].armorClass 		= acLight[q];				// reset all armor values
 		window['lightShoulderArmor'+q].armorClass 	= acLight[q];
@@ -769,7 +716,7 @@ function recalculateArmorPieceAC () {
 		window['heavyBodyArmor'+q].armorClass 		= acHeavy[q];
 		window['heavyPants'+q].armorClass 			= acHeavy[q];
 		window['heavyShoes'+q].armorClass 			= acHeavy[q];
-		
+
 		window['lightHeadArmor'+q].armorClass 		*= l * 2;					// apply all skill modifiers
 		window['lightShoulderArmor'+q].armorClass 	*= l * 2;
 		window['lightGloves'+q].armorClass 			*= l * 2;
@@ -788,7 +735,7 @@ function recalculateArmorPieceAC () {
 		window['heavyBodyArmor'+q].armorClass 		*= h * 2;
 		window['heavyPants'+q].armorClass 			*= h * 2;
 		window['heavyShoes'+q].armorClass 			*= h * 2;
-		
+
 		if (cow.keyItem7have == true) {
 		window['lightHeadArmor'+q].armorClass 		+= 1;						// apply Armorer's Hammer boost
 		window['lightShoulderArmor'+q].armorClass 	+= 1;
@@ -808,7 +755,7 @@ function recalculateArmorPieceAC () {
 		window['heavyBodyArmor'+q].armorClass 		+= 1;
 		window['heavyPants'+q].armorClass 			+= 1;
 		window['heavyShoes'+q].armorClass 			+= 1; }
-		
+
 		if (cow.keyItem9have == true) {
 		window['lightHeadArmor'+q].armorClass 		+= 1;						// apply hardening oil boost
 		window['lightShoulderArmor'+q].armorClass 	+= 1;
@@ -828,7 +775,7 @@ function recalculateArmorPieceAC () {
 		window['heavyBodyArmor'+q].armorClass 		+= 1;
 		window['heavyPants'+q].armorClass 			+= 1;
 		window['heavyShoes'+q].armorClass 			+= 1; }
-		
+
 		if (cow.keyItem8have == true) {
 		window['lightHeadArmor'+q].armorClass 		+= (mm + hh);					// apply Magearmor Ring boost
 		window['lightShoulderArmor'+q].armorClass 	+= (mm + hh);
@@ -848,25 +795,25 @@ function recalculateArmorPieceAC () {
 		window['heavyBodyArmor'+q].armorClass 		+= (ll + mm);
 		window['heavyPants'+q].armorClass 			+= (ll + mm);
 		window['heavyShoes'+q].armorClass 			+= (ll + mm); }
-		
+
 		window['lightHeadArmor'+q].armorClass 		= Math.round (window['lightHeadArmor'+q].armorClass *10)/10; 							// remove decimal places
-		window['lightShoulderArmor'+q].armorClass 	= Math.round (window['lightShoulderArmor'+q].armorClass *10)/10; 
-		window['lightGloves'+q].armorClass 			= Math.round (window['lightGloves'+q].armorClass *10)/10; 		
-		window['lightBodyArmor'+q].armorClass 		= Math.round (window['lightBodyArmor'+q].armorClass *10)/10; 	
-		window['lightPants'+q].armorClass 			= Math.round (window['lightPants'+q].armorClass *10)/10; 		
-		window['lightShoes'+q].armorClass 			= Math.round (window['lightShoes'+q].armorClass *10)/10; 		
-		window['mediumHeadArmor'+q].armorClass		= Math.round (window['mediumHeadArmor'+q].armorClass *10)/10;	
+		window['lightShoulderArmor'+q].armorClass 	= Math.round (window['lightShoulderArmor'+q].armorClass *10)/10;
+		window['lightGloves'+q].armorClass 			= Math.round (window['lightGloves'+q].armorClass *10)/10;
+		window['lightBodyArmor'+q].armorClass 		= Math.round (window['lightBodyArmor'+q].armorClass *10)/10;
+		window['lightPants'+q].armorClass 			= Math.round (window['lightPants'+q].armorClass *10)/10;
+		window['lightShoes'+q].armorClass 			= Math.round (window['lightShoes'+q].armorClass *10)/10;
+		window['mediumHeadArmor'+q].armorClass		= Math.round (window['mediumHeadArmor'+q].armorClass *10)/10;
 		window['mediumShoulderArmor'+q].armorClass	= Math.round (window['mediumShoulderArmor'+q].armorClass *10)/10;
-		window['mediumGloves'+q].armorClass 		= Math.round (window['mediumGloves'+q].armorClass *10)/10; 		
-		window['mediumBodyArmor'+q].armorClass 		= Math.round (window['mediumBodyArmor'+q].armorClass *10)/10; 	
-		window['mediumPants'+q].armorClass 			= Math.round (window['mediumPants'+q].armorClass *10)/10; 		
-		window['mediumShoes'+q].armorClass 			= Math.round (window['mediumShoes'+q].armorClass *10)/10; 		
-		window['heavyHeadArmor'+q].armorClass 		= Math.round (window['heavyHeadArmor'+q].armorClass *10)/10; 	
-		window['heavyShoulderArmor'+q].armorClass 	= Math.round (window['heavyShoulderArmor'+q].armorClass *10)/10; 
-		window['heavyGloves'+q].armorClass 			= Math.round (window['heavyGloves'+q].armorClass *10)/10; 		
-		window['heavyBodyArmor'+q].armorClass 		= Math.round (window['heavyBodyArmor'+q].armorClass *10)/10; 	
-		window['heavyPants'+q].armorClass 			= Math.round (window['heavyPants'+q].armorClass *10)/10; 		
-		window['heavyShoes'+q].armorClass 			= Math.round (window['heavyShoes'+q].armorClass *10)/10; 		
+		window['mediumGloves'+q].armorClass 		= Math.round (window['mediumGloves'+q].armorClass *10)/10;
+		window['mediumBodyArmor'+q].armorClass 		= Math.round (window['mediumBodyArmor'+q].armorClass *10)/10;
+		window['mediumPants'+q].armorClass 			= Math.round (window['mediumPants'+q].armorClass *10)/10;
+		window['mediumShoes'+q].armorClass 			= Math.round (window['mediumShoes'+q].armorClass *10)/10;
+		window['heavyHeadArmor'+q].armorClass 		= Math.round (window['heavyHeadArmor'+q].armorClass *10)/10;
+		window['heavyShoulderArmor'+q].armorClass 	= Math.round (window['heavyShoulderArmor'+q].armorClass *10)/10;
+		window['heavyGloves'+q].armorClass 			= Math.round (window['heavyGloves'+q].armorClass *10)/10;
+		window['heavyBodyArmor'+q].armorClass 		= Math.round (window['heavyBodyArmor'+q].armorClass *10)/10;
+		window['heavyPants'+q].armorClass 			= Math.round (window['heavyPants'+q].armorClass *10)/10;
+		window['heavyShoes'+q].armorClass 			= Math.round (window['heavyShoes'+q].armorClass *10)/10;
 	}
 }
 
@@ -981,7 +928,7 @@ function addItemDropToInventory (q) {
 			if (cow.equippedPants.substring(0, 1) == "l")										{equipArmor('light', 'Pants')}
 			if (cow.equippedShoes.substring(0, 1) == "l")										{equipArmor('light', 'Shoes')}
 			if (cow.equippedShield != "" && cow.equippedShield.substring(0, 1) == "l")			{equipArmor('light', 'Shield'); equipArmor('light', 'Shield')}
-			
+
 			if (cow.equippedHeadArmor.substring(0, 1) == "m") 									{equipArmor('medium', 'HeadArmor')}
 			if (cow.equippedShoulderArmor.substring(0, 1) == "m")								{equipArmor('medium', 'ShoulderArmor')}
 			if (cow.equippedGloves.substring(0, 1) == "m")										{equipArmor('medium', 'Gloves')}
@@ -989,7 +936,7 @@ function addItemDropToInventory (q) {
 			if (cow.equippedPants.substring(0, 1) == "m")										{equipArmor('medium', 'Pants')}
 			if (cow.equippedShoes.substring(0, 1) == "m")										{equipArmor('medium', 'Shoes')}
 			if (cow.equippedShield != "" && cow.equippedShield.substring(0, 1) == "m")			{equipArmor('medium', 'Shield'); equipArmor('medium', 'Shield')}
-			
+
 			if (cow.equippedHeadArmor.substring(0, 1) == "h") 									{equipArmor('heavy', 'HeadArmor')}
 			if (cow.equippedShoulderArmor.substring(0, 1) == "h")								{equipArmor('heavy', 'ShoulderArmor')}
 			if (cow.equippedGloves.substring(0, 1) == "h")										{equipArmor('heavy', 'Gloves')}
@@ -997,14 +944,14 @@ function addItemDropToInventory (q) {
 			if (cow.equippedPants.substring(0, 1) == "h")										{equipArmor('heavy', 'Pants')}
 			if (cow.equippedShoes.substring(0, 1) == "h")										{equipArmor('heavy', 'Shoes')}
 			if (cow.equippedShield != "" && cow.equippedShield.substring(0, 1) == "h")			{equipArmor('heavy', 'Shield'); equipArmor('heavy', 'Shield')}
-			
+
 			if (cow.equippedWeapon.substring(0, 1) == "D")										{equipWeapon('Dagger')}
 			if (cow.equippedWeapon.substring(0, 1) == "F")										{equipWeapon('Fist')}
 			if (cow.equippedWeapon.substring(0, 2) == "Sw")										{equipWeapon('Sword')}
 			if (cow.equippedWeapon.substring(0, 1) == "M")										{equipWeapon('Mace')}
 			if (cow.equippedWeapon.substring(0, 2) == "Sp")										{equipWeapon('Spear')}
 			if (cow.equippedWeapon.substring(0, 1) == "A")										{equipWeapon('Axe')}
-			
+
 			recalculateWeaponDMG();
 			recalculatePlayerDMG();
 			recalculateArmorPieceAC();
@@ -1031,7 +978,7 @@ function addItemDropToInventory (q) {
 		writeConsole ("Rare Item found: " + window[q].name);
 		cow[q+'have'] = true;
 		document.getElementById('keyItemsButton').innerHTML = "<span id='IEhack'>NEW!</span>";								// Puts NEW! text on the key items button
-		
+
 	}
 }
 
@@ -1053,7 +1000,7 @@ function lockAllTabs() {
 	document.getElementById('optionsButton').disabled = true;
 	document.getElementById('faqButton').disabled = true;
 	document.getElementById('aboutButton').disabled = true;
-	
+
 }
 
 
@@ -1107,10 +1054,10 @@ function updateMainTextSpans() {
 	document.getElementById('textLevel').innerHTML = cow.level;
 	document.getElementById('textMaxHP').innerHTML = cow.maxHP;
 
-	document.getElementById('textMainTabMinDMG').innerHTML = cow.minDMG; 
+	document.getElementById('textMainTabMinDMG').innerHTML = cow.minDMG;
 	document.getElementById('textMainTabMaxDMG').innerHTML = cow.maxDMG;
 	document.getElementById('textMainTabAC').innerHTML = cow.ac;
-	
+
 	// currentMap display, and all the various hacks for it
 	document.getElementById('textCurrentMap').innerHTML = cow.currentMap;
 	if (cow.currentMap == "resting") { document.getElementById('textCurrentMap').innerHTML = cow.overrideCurrentMapDisplay; }
@@ -1119,7 +1066,7 @@ function updateMainTextSpans() {
 	if (document.getElementById('textCurrentMap').innerHTML == "Ardana Residential") { document.getElementById('textCurrentMap').innerHTML = "Ardana - Residential"; }
 	if (document.getElementById('textCurrentMap').innerHTML == "Ardana Marketplace") { document.getElementById('textCurrentMap').innerHTML = "Ardana - Marketplace"; }
 	if (document.getElementById('textCurrentMap').innerHTML == "Ardana Slums") { document.getElementById('textCurrentMap').innerHTML = "Ardana - Slums"; }
-	
+
 //  document.getElementById('textDebug1').innerHTML = cow.masterGamestateVariable;
 // 	document.getElementById('textDebug2').innerHTML = cow.hp;
 
@@ -1156,7 +1103,7 @@ function updateMainTextSpans() {
 
 
 function rerollWorldMapRNGifMasterGameTimerIsUp() {
-	if (cow.masterGamestateVariable == "refreshRNGNow") { 
+	if (cow.masterGamestateVariable == "refreshRNGNow") {
 		cow.worldMapRNG = Math.floor(Math.random()*99);
 		cow.itemDropRNG = Math.floor(Math.random()*99);
 		cow.itemClassRNG = Math.floor(Math.random()*99);
@@ -1224,9 +1171,9 @@ function statGrowth() {
 	if (cow.sword >= 99)		{cow.sword = 99;   	cow.swordXP = 0; }
 	if (cow.mace >= 99)			{cow.mace = 99;    	cow.maceXP = 0; }
 	if (cow.mArmor >= 99)		{cow.mArmor = 99;  	cow.mArmorXP = 0; }
-	if (cow.smash >= 99)		{cow.smash = 99;   	cow.smashXP = 0; }	
+	if (cow.smash >= 99)		{cow.smash = 99;   	cow.smashXP = 0; }
 	if (cow.dagger >= 99)		{cow.dagger = 99;  	cow.daggerXP = 0; }
-	if (cow.dodge >= 99)		{cow.dodge = 99;   	cow.dodgeXP = 0; }	
+	if (cow.dodge >= 99)		{cow.dodge = 99;   	cow.dodgeXP = 0; }
 	if (cow.lArmor >= 99)		{cow.lArmor = 99;  	cow.lArmorXP = 0; }
 	if (cow.climb >= 99)		{cow.climb = 99;   	cow.climbXP = 0; }
 	if (cow.fist >= 99)			{cow.fist = 99;    	cow.fistXP = 0; }
@@ -1237,7 +1184,7 @@ function statGrowth() {
 	if (cow.unlock >= 99)		{cow.unlock = 99;  	cow.unlockXP = 0; }
 	if (cow.medic >= 99)		{cow.medic = 99;   	cow.medicXP = 0; }
 	if (cow.critical >= 99)		{cow.critical = 99;	cow.criticalXP = 0; }
-	
+
 // Cap statXPs at 3
 	if (cow.defXP > 3) { cow.defXP = 3; }
 	if (cow.strXP > 3) { cow.strXP = 3; }
@@ -1256,7 +1203,7 @@ function statGrowth() {
 			if (q<3) { q = 3 };
 			cow.maxHP += q;
 			cow.maxHP = Math.round (cow.maxHP);
-		recalculateWeaponDMG(); 
+		recalculateWeaponDMG();
 		recalculatePlayerDMG();
 		recalculateArmorPieceAC();
 		recalculatePlayerAC();
@@ -1272,7 +1219,7 @@ function updateEXPProgressBars() {
 		var q = Math.round (cow.levelXP * 2);
 		document.getElementById('expBar').innerHTML = Array(q+1).join("*");
 		document.getElementById('expBarEmptySpace').innerHTML = Array(21-q).join(".");
-		
+
 	// Update Skill XP Display
 	if (cow.currentImprovingSkill == "invis") {
 		document.getElementById('textCurrentlyGrindingSkill').innerHTML = "";
@@ -1311,7 +1258,7 @@ function preloadStuff() {
 	    xmlhttp.open("GET", filename, true);
 	    xmlhttp.send();
 	}
-	
+
 	// Fonts
 	load('Courier.ttf');
 	load('Monaco.ttf');
@@ -1322,7 +1269,7 @@ function preloadStuff() {
 	load('themeBlue.css');
 	load('themeMatrix.css');
 	load('themePurple.css');
-	load('themeWhite.css');	
+	load('themeWhite.css');
 }
 
 
