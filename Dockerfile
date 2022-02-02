@@ -1,4 +1,3 @@
 FROM nginx
-FROM nginx
-COPY app /usr/share/nginx/html/app
+COPY app /usr/share/nginx/html/
 EXPOSE 80
